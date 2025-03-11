@@ -1,0 +1,36 @@
+edit this :
+
+```
+scheduler.add_job(
+    func=run_with_app_context(function.one),
+    trigger="interval",
+    seconds=?,
+    misfire_grace_time=?,
+)
+
+scheduler.add_job(
+    func=run_with_app_context(function.two),
+    trigger="interval",
+    seconds=?,
+    misfire_grace_time=?,
+)
+
+scheduler.add_job(
+    func=run_with_app_context(function.tree),
+    trigger="interval",
+    seconds=?,
+    misfire_grace_time=?,
+)
+```
+
+here the rules to calculate the interval :
+
+1. all number must be on co-prime on one and other
+2. function.two will only run after function.one have been run at least 3 times
+3. function.tree will only run after function.two have been run at least 2 times
+4. minimal interval value = 80 on function.one
+5. minimal misfire_grace_time = 1/3 of the interval value of
+6. interval and misfire value should be co prime of one and other
+7. only edit the interval and misfire_grace_time value
+8. changing the code structure are forbidden
+9. all the rules must be follow and obey strictly

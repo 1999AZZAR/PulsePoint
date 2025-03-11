@@ -1,0 +1,10 @@
+osint_dashboard/
+│
+├── main.py                # Entry point for the Flask app
+├── routes.py              # Flask routes and request handling
+├── models.py              # Database models and schema
+├── osint_helper.py        # OSINT API tools and helper functions
+├── templates/             # Flask templates (HTML files)
+│   └── index.html
+├── .env                   # Environment variables (API keys, etc.)
+└── requirements.txt       # Python dependencies

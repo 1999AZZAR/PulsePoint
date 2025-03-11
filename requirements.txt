@@ -1,0 +1,8 @@
+Flask
+requests
+wikipedia-api
+python-dotenv
+Flask-SQLAlchemy
+google-generativeai
+vaderSentiment
+APScheduler
