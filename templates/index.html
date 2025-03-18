@@ -1,147 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PulsePoint : General</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Flatpickr for date picking -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M0 96C0 78.3 14.3 64 32 64H48c13.3 0 24 10.7 24 24v9.5C91.1 78.4 115.3 64 144 64c19.4 0 36.9 7.8 49.7 20.5c18.4-16.3 42.6-20.5 65-20.5c28.7 0 52.9 14.4 72 33.5V88c0-13.3 10.7-24 24-24h16c17.7 0 32 14.3 32 32v88h89.3c-4.8-10.1-7.3-21.2-7.3-32c0-9.7 1.8-19 5.1-27.6C479.4 110.6 455.8 96 429 96c-30.1 0-56.4 19.6-65.5 48H224v5.8c0 5.8 4.7 10.6 10.5 10.6h46.3c-2.7 10.4-4.9 21.1-6.4 32H234.5c-5.8 0-10.5 4.7-10.5 10.5V208H192v64H96c-17.7 0-32-14.3-32-32V96zM32 288h96c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V320c0-17.7 14.3-32 32-32zm144 0h96c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H176c-17.7 0-32-14.3-32-32V320c0-17.7 14.3-32 32-32zm144 0h96c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H320c-17.7 0-32-14.3-32-32V320c0-17.7 14.3-32 32-32z' fill='%234A90E2' /></svg>">
-    <style>
-        .flatpickr-input {
-            background-color: white !important;
-        }
-        .time-range-pill {
-            transition: all 0.2s;
-        }
-        .time-range-pill.active {
-            background-color: #3b82f6;
-            color: white;
-        }
-        .source-content {
-            transition: all 0.3s ease-out;
-        }
-    </style>
-</head>
-<body class="bg-gray-100 p-6">
-    <h1 class="text-2xl font-bold text-gray-800 mb-4">
-        <i class="fa-solid fa-wave-square text-blue-500 mr-2"></i>PulsePoint (General Knowledge)
-    </h1>
+{% extends "base.html" %}
 
-    <!-- Search Form -->
-    <form id="search-form" class="bg-white p-6 rounded-lg shadow-md mb-6">
-        <label for="query" class="block text-sm font-semibold">Keywords:</label>
-        <div class="relative">
-            <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-500">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </span>
-            <input type="text" id="query" placeholder="Enter your query" required class="w-full p-2 pl-10 border border-gray-300 rounded mb-4">
-        </div>
+{% block title %}PulsePoint : General{% endblock %}
 
-        <!-- Advanced Search Toggle -->
-        <button type="button" id="advanced-toggle" class="mb-4 text-blue-500 hover:underline flex items-center">
-            <i class="fa-solid fa-sliders mr-2"></i>
-            <span id="toggle-text">Show Advanced Search</span>
-            <i id="toggle-icon" class="fa-solid fa-chevron-down ml-1"></i>
-        </button>
+{% block page_subtitle %}(General Knowledge){% endblock %}
 
-        <!-- Advanced Filters -->
-        <div id="advanced-filters" class="mb-4 hidden">
-            <div class="mb-4">
-                <label for="negative_query" class="block text-sm font-semibold">
-                    <i class="fa-solid fa-ban mr-1 text-red-500"></i>Exclude Keywords:
-                </label>
-                <input type="text" id="negative_query" class="w-full p-2 border border-gray-300 rounded">
-            </div>
-
-            <div class="mb-4">
-                <label for="language" class="block text-sm font-semibold">
-                    <i class="fa-solid fa-language mr-1 text-blue-500"></i>Language:
-                </label>
-                <select id="language" class="w-full p-2 border border-gray-300 rounded">
-                    <option value="en">English</option>
-                    <option value="id">Indonesian</option>
-                </select>
-            </div>
-
-            <!-- Modern Time Filter Section -->
-            <div class="mb-6">
-                <h3 class="text-lg font-semibold mb-3">
-                    <i class="fa-regular fa-clock mr-1 text-blue-500"></i>Time Filters
-                </h3>
-
-                <!-- Quick Time Range Selector -->
-                <div class="mb-4">
-                    <p class="text-sm font-medium mb-2">Quick Select:</p>
-                    <div class="flex flex-wrap gap-2">
-                        <button type="button" class="time-range-pill px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-full text-sm" data-range="none">None</button>
-                        <button type="button" class="time-range-pill px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-full text-sm" data-range="today">Today</button>
-                        <button type="button" class="time-range-pill px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-full text-sm" data-range="past-week">Past Week</button>
-                        <button type="button" class="time-range-pill px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-full text-sm" data-range="past-month">Past Month</button>
-                        <button type="button" class="time-range-pill px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-full text-sm" data-range="past-year">Past Year</button>
-                        <button type="button" class="time-range-pill px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-full text-sm" data-range="custom">Custom Range</button>
-                    </div>
-                </div>
-
-                <!-- Custom Date Range Selector -->
-                <div id="custom-date-range" class="bg-gray-50 p-4 rounded-lg border border-gray-200 hidden">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-medium mb-1">Date Range:</label>
-                            <div class="relative">
-                                <input type="text" id="date-range-picker" placeholder="Select date range" class="w-full p-2 pl-10 border border-gray-300 rounded">
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-500">
-                                    <i class="fa-regular fa-calendar"></i>
-                                </span>
-                                <input type="hidden" id="from_date">
-                                <input type="hidden" id="to_date">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-medium mb-1">Year Range:</label>
-                            <div class="flex items-center gap-2">
-                                <div class="relative flex-1">
-                                    <input type="number" id="from_year" placeholder="From Year" min="1900" max="2025" class="w-full p-2 pl-10 border border-gray-300 rounded">
-                                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-500">
-                                        <i class="fa-solid fa-calendar-days"></i>
-                                    </span>
-                                </div>
-                                <span class="text-gray-400">to</span>
-                                <div class="relative flex-1">
-                                    <input type="number" id="to_year" placeholder="To Year" min="1900" max="2025" class="w-full p-2 pl-10 border border-gray-300 rounded">
-                                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-500">
-                                        <i class="fa-solid fa-calendar-days"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Applied Time Filters Display -->
-                    <div id="active-time-filters" class="mt-3 hidden">
-                        <div class="flex items-center bg-blue-50 text-blue-700 p-2 rounded">
-                            <i class="fa-solid fa-filter mr-2"></i>
-                            <span id="active-filter-text">Active filters will appear here</span>
-                            <button type="button" id="clear-time-filters" class="ml-auto text-blue-500 hover:text-blue-700">
-                                <i class="fa-solid fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Search Button -->
-        <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 flex items-center justify-center">
-            <i class="fa-solid fa-search mr-2"></i>Search
-        </button>
-    </form>
+{% block content %}
+    <!-- Include the search form component -->
+    {% include "search-form.html" %}
 
     <!-- Loading Indicator -->
     <div id="loading" class="flex flex-col items-center justify-center text-gray-600 hidden mt-4">
@@ -157,7 +22,8 @@
 
     <!-- Results Section -->
     <div id="results" class="space-y-4"></div>
+{% endblock %}
 
-    <script src="{{ url_for('static', filename='gk.js') }}"></script>
-</body>
-</html>
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/gk.js') }}"></script>
+{% endblock %}

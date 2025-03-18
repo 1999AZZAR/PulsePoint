@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}PulsePoint{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Flatpickr for date picking -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M0 96C0 78.3 14.3 64 32 64H48c13.3 0 24 10.7 24 24v9.5C91.1 78.4 115.3 64 144 64c19.4 0 36.9 7.8 49.7 20.5c18.4-16.3 42.6-20.5 65-20.5c28.7 0 52.9 14.4 72 33.5V88c0-13.3 10.7-24 24-24h16c17.7 0 32 14.3 32 32v88h89.3c-4.8-10.1-7.3-21.2-7.3-32c0-9.7 1.8-19 5.1-27.6C479.4 110.6 455.8 96 429 96c-30.1 0-56.4 19.6-65.5 48H224v5.8c0 5.8 4.7 10.6 10.5 10.6h46.3c-2.7 10.4-4.9 21.1-6.4 32H234.5c-5.8 0-10.5 4.7-10.5 10.5V208H192v64H96c-17.7 0-32-14.3-32-32V96zM32 288h96c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V320c0-17.7 14.3-32 32-32zm144 0h96c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H176c-17.7 0-32-14.3-32-32V320c0-17.7 14.3-32 32-32zm144 0h96c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H320c-17.7 0-32-14.3-32-32V320c0-17.7 14.3-32 32-32z' fill='%234A90E2' /></svg>">
+    {% block extra_css %}{% endblock %}
+    <style>
+        .flatpickr-input {
+            background-color: white !important;
+        }
+        .time-range-pill {
+            transition: all 0.2s;
+        }
+        .time-range-pill.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .source-content {
+            transition: all 0.3s ease-out;
+        }
+        .sidebar {
+            transition: transform 0.3s ease;
+        }
+        .sidebar-collapsed {
+            transform: translateX(-100%);
+        }
+        .main-content {
+            transition: margin-left 0.3s ease;
+        }
+        .workflow-status {
+            font-size: 0.7rem;
+            padding: 0.15rem 0.4rem;
+            border-radius: 9999px;
+        }
+        .status-todo {
+            background-color: #fee2e2;
+            color: #b91c1c;
+        }
+        .status-progress {
+            background-color: #e0f2fe;
+            color: #0369a1;
+        }
+        .status-done {
+            background-color: #dcfce7;
+            color: #15803d;
+        }
+
+        /* Ensure proper grid layout for results */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem 0;
+        }
+
+        /* Style for individual result cards */
+        .result-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .result-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Ensure proper spacing between cards */
+        .result-item {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Ensure the content inside the cards is properly spaced */
+        .result-content {
+            margin-top: 1rem;
+        }
+
+        /* Ensure the footer inside the cards is properly aligned */
+        .result-footer {
+            margin-top: 1rem;
+            text-align: right;
+        }
+
+        /* Hover tooltip styles */
+        .workflow-item {
+            position: relative;
+            display: block;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .workflow-item:hover {
+            background-color: #f3f4f6; /* Light gray background on hover */
+        }
+
+        .workflow-item .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: #374151; /* Dark gray background */
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 0.5rem;
+            position: absolute;
+            z-index: 1;
+            left: 50%;
+            margin-left: -100px; /* Center the tooltip */
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        /* Position the tooltip above the menu item by default */
+        .workflow-item .tooltip-text {
+            bottom: 125%;
+        }
+
+        /* If there isn't enough space above, position the tooltip below */
+        .workflow-item:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Adjust tooltip position for the Dashboard (topmost item) */
+        .dashboard-item .tooltip-text {
+            bottom: auto;
+            top: 125%;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar fixed top-0 left-0 h-full w-80 bg-white shadow-lg z-10 sidebar-collapsed">
+        <div class="p-4">
+            <div class="flex items-center justify-between border-b pb-4 mb-4">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-wave-square text-blue-500 mr-2"></i>
+                    <span class="font-bold text-lg">PulsePoint</span>
+                </div>
+                <button id="sidebar-close" class="text-gray-500 hover:text-gray-800">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+
+            <nav class="space-y-1">
+                <!-- Dashboard -->
+                <a href="#" class="dashboard-item workflow-item block py-2 px-3 rounded hover:bg-gray-100 text-blue-600 font-medium border-l-4 border-blue-500 bg-blue-50">
+                    <i class="fa-solid fa-house mr-2"></i>Dashboard
+                    <span class="tooltip-text">View the main dashboard with an overview of all workflows and recent activity.</span>
+                </a>
+
+                <div class="mt-6">
+                    <p class="text-xs uppercase font-semibold text-gray-500 mb-2 px-3">OSINT Workflows</p>
+
+                    <!-- Person of Interest -->
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                        <div>
+                            <i class="fa-solid fa-user mr-2"></i>
+                            <span>Person of Interest</span>
+                        </div>
+                        <span class="workflow-status status-todo">Todo</span>
+                        <span class="tooltip-text">Search for information about a person using name, email, or phone number. Includes social media profiles, breach history, and more.</span>
+                    </a>
+
+                    <!-- Domain Analysis -->
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                        <div>
+                            <i class="fa-solid fa-globe mr-2"></i>
+                            <span>Domain Analysis</span>
+                        </div>
+                        <span class="workflow-status status-todo">Todo</span>
+                        <span class="tooltip-text">Analyze a domain or URL for ownership, DNS history, tech stack, and potential threats.</span>
+                    </a>
+
+                    <!-- Threat Intelligence -->
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                        <div>
+                            <i class="fa-solid fa-shield-alt mr-2"></i>
+                            <span>Threat Intelligence</span>
+                        </div>
+                        <span class="workflow-status status-todo">Todo</span>
+                        <span class="tooltip-text">Investigate IPs, domains, or file hashes for potential threats, malware, and network vulnerabilities.</span>
+                    </a>
+
+                    <!-- Network Recon -->
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                        <div>
+                            <i class="fa-solid fa-network-wired mr-2"></i>
+                            <span>Network Recon</span>
+                        </div>
+                        <span class="workflow-status status-todo">Todo</span>
+                        <span class="tooltip-text">Discover devices, geolocate IPs, and gather DNS history for network reconnaissance.</span>
+                    </a>
+
+                    <!-- Social Media Analysis -->
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                        <div>
+                            <i class="fa-solid fa-hashtag mr-2"></i>
+                            <span>Social Media Analysis</span>
+                        </div>
+                        <span class="workflow-status status-todo">Todo</span>
+                        <span class="tooltip-text">Analyze social media activity using usernames or keywords across platforms like Twitter, Reddit, and Instagram.</span>
+                    </a>
+
+                    <!-- Image Analysis -->
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                        <div>
+                            <i class="fa-solid fa-image mr-2"></i>
+                            <span>Image Analysis</span>
+                        </div>
+                        <span class="workflow-status status-todo">Todo</span>
+                        <span class="tooltip-text">Perform reverse image searches to find the source and related information of an image.</span>
+                    </a>
+
+                    <!-- Email Verification -->
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                        <div>
+                            <i class="fa-solid fa-envelope mr-2"></i>
+                            <span>Email Verification</span>
+                        </div>
+                        <span class="workflow-status status-todo">Todo</span>
+                        <span class="tooltip-text">Verify email addresses and check for breaches or associated accounts.</span>
+                    </a>
+
+                    <!-- Phone Number Lookup -->
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                        <div>
+                            <i class="fa-solid fa-phone mr-2"></i>
+                            <span>Phone Number Lookup</span>
+                        </div>
+                        <span class="workflow-status status-todo">Todo</span>
+                        <span class="tooltip-text">Validate and gather additional details about a phone number.</span>
+                    </a>
+
+                    <!-- Geolocation -->
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                        <div>
+                            <i class="fa-solid fa-map-marker-alt mr-2"></i>
+                            <span>Geolocation</span>
+                        </div>
+                        <span class="workflow-status status-todo">Todo</span>
+                        <span class="tooltip-text">Geolocate IP addresses or coordinates and visualize them on a map.</span>
+                    </a>
+
+                    <!-- News Monitoring -->
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                        <div>
+                            <i class="fa-solid fa-newspaper mr-2"></i>
+                            <span>News Monitoring</span>
+                        </div>
+                        <span class="workflow-status status-todo">Todo</span>
+                        <span class="tooltip-text">Monitor news articles and trends based on keywords or topics.</span>
+                    </a>
+
+                    <!-- General Knowledge -->
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                        <div>
+                            <i class="fa-solid fa-book mr-2"></i>
+                            <span>General Knowledge</span>
+                        </div>
+                        <span class="workflow-status status-progress">In Progress</span>
+                        <span class="tooltip-text">Search for general information, summaries, and facts using keywords or topics.</span>
+                    </a>
+                </div>
+
+                <div class="mt-6">
+                    <p class="text-xs uppercase font-semibold text-gray-500 mb-2 px-3">SETTINGS</p>
+                    <a href="#" class="block py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                        <i class="fa-solid fa-key mr-2"></i>API Keys
+                    </a>
+                    <a href="#" class="block py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                        <i class="fa-solid fa-cog mr-2"></i>Preferences
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="main-content">
+        <!-- Top Header Bar -->
+        <header class="bg-white shadow-sm p-4 mb-6 flex items-center">
+            <h1 id="header-title" class="text-2xl font-bold text-gray-800 cursor-pointer">
+                <i class="fa-solid fa-wave-square text-blue-500 mr-2"></i>PulsePoint {% block page_subtitle %}{% endblock %}
+            </h1>
+        </header>
+
+        <!-- Main Content Area -->
+        <div class="container mx-auto px-4">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    <!-- Base Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+            const headerTitle = document.getElementById('header-title');
+            const sidebarClose = document.getElementById('sidebar-close');
+
+            // Toggle sidebar when clicking on header title
+            headerTitle.addEventListener('click', function() {
+                sidebar.classList.toggle('sidebar-collapsed');
+                if (sidebar.classList.contains('sidebar-collapsed')) {
+                    mainContent.style.marginLeft = '0';
+                } else {
+                    mainContent.style.marginLeft = '20rem';
+                }
+            });
+
+            // Close sidebar when clicking the close button
+            sidebarClose.addEventListener('click', function() {
+                sidebar.classList.add('sidebar-collapsed');
+                mainContent.style.marginLeft = '0';
+            });
+        });
+    </script>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>
