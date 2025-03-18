@@ -175,3 +175,11 @@ Developed with ❤️ by [azzar](https://github.com/1999AZZAR) and the open-sour
 - 📘 Documentation (todo)
 - 🐞 [Issue Tracker](https://github.com/1999AZZAR/PulsePoint/issues)
 - ✨ [Feature Requests](https://github.com/1999AZZAR/PulsePoint/discussions)
+
+---
+
+## UI overview
+
+1. ![dashboard](docs/01.png)
+2. ![](docs/02.png)
+3. ![](docs/03.png)
