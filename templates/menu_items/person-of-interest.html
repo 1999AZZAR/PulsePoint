@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}PulsePoint : PoI{% endblock %}
+
+{% block page_subtitle %}(Person of Interest){% endblock %}
+
+{% block content %}
+    <!-- Include the search form component -->
+    {% include "search-form.html" %}
+
+    <!-- Loading Indicator -->
+    <div id="loading" class="flex flex-col items-center justify-center text-gray-600 hidden mt-4">
+        <i class="fa-solid fa-spinner fa-spin fa-2x text-blue-500"></i>
+        <p class="mt-2 text-sm font-medium">Searching... Please wait...</p>
+    </div>
+
+    <!-- Error Message -->
+    <div id="error" class="bg-red-100 text-red-700 p-4 rounded hidden flex items-center">
+        <i class="fa-solid fa-circle-exclamation mr-2"></i>
+        <span id="error-message"></span>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results" class="space-y-4"></div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/gk.js') }}"></script>
+{% endblock %}

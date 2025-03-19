@@ -291,10 +291,10 @@ form.addEventListener('submit', async (e) => {
                                 ${sentimentBadge}
                             </h3>
                             <div class="result-content custom-scrollbar content-fade">
-                                <p class="text-gray-700">${item.snippet || "No description available"}</p>
+                                <p class="text-gray-700">${item.snippet || item.summary ||"No description available"}</p>
                             </div>
                             <div class="result-footer">
-                                ${item.url ? `<a href="${item.url}" target="_blank" class="text-blue-500 hover:underline inline-block"><i class="fa-solid fa-external-link mr-1"></i>View Source</a>` : ""}
+                                ${item.url || item.link ? `<a href="${item.url || item.link}" target="_blank" class="text-blue-500 hover:underline inline-block"><i class="fa-solid fa-external-link mr-1"></i>View Source</a>` : ""}
                             </div>
                         `;
 

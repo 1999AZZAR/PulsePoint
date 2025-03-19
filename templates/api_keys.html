@@ -1,0 +1,721 @@
+{% extends "base.html" %}
+
+{% block title %}PulsePoint : AKM{% endblock %}
+
+{% block page_subtitle %}(API Keys Management){% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4">
+    <h2 class="text-2xl font-bold mb-6">API Keys Management</h2>
+
+    <form id="api-keys-form" class="bg-white p-6 rounded-lg shadow-md">
+        <!-- General Knowledge APIs -->
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">General Knowledge APIs</h3>
+            <div class="space-y-4">
+                <!-- NewsAPI Key -->
+                <div>
+                    <label for="newsapi_key" class="block text-sm font-medium text-gray-700">
+                        NewsAPI Key
+                        <a href="https://newsapi.org/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="newsapi_key" name="NEWSAPI_KEY" value="{{ api_keys.NEWSAPI_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('newsapi_key')"></i>
+                    </div>
+                </div>
+
+                <!-- Google Search Engine API Key -->
+                <div>
+                    <label for="gse_api_key" class="block text-sm font-medium text-gray-700">
+                        Google Search Engine API Key
+                        <a href="https://developers.google.com/custom-search/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="gse_api_key" name="GSE_API_KEY" value="{{ api_keys.GSE_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('gse_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- Google Search Engine ID -->
+                <div>
+                    <label for="gse_id" class="block text-sm font-medium text-gray-700">
+                        Google Search Engine ID
+                        <a href="https://developers.google.com/custom-search/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="gse_id" name="GSE_ID" value="{{ api_keys.GSE_ID }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('gse_id')"></i>
+                    </div>
+                </div>
+
+                <!-- Wolfram Alpha App ID -->
+                <div>
+                    <label for="wolfram_alpha_app_id" class="block text-sm font-medium text-gray-700">
+                        Wolfram Alpha App ID
+                        <a href="https://developer.wolframalpha.com/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="wolfram_alpha_app_id" name="WOLFRAM_ALPHA_APP_ID" value="{{ api_keys.WOLFRAM_ALPHA_APP_ID }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('wolfram_alpha_app_id')"></i>
+                    </div>
+                </div>
+
+                <!-- Gemini API Key -->
+                <div>
+                    <label for="gemini_api_key" class="block text-sm font-medium text-gray-700">
+                        Gemini API Key
+                        <a href="https://aistudio.google.com/app/apikey" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="gemini_api_key" name="GEMINI_API_KEY" value="{{ api_keys.GEMINI_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('gemini_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- Wikipedia API Key -->
+                <div>
+                    <label for="wikipedia_api_key" class="block text-sm font-medium text-gray-700">
+                        Wikipedia API Key
+                        <a href="https://www.mediawiki.org/wiki/API:Main_page" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="wikipedia_api_key" name="WIKIPEDIA_API_KEY" value="{{ api_keys.WIKIPEDIA_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('wikipedia_api_key')"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Person of Interest APIs -->
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">Person of Interest APIs</h3>
+            <div class="space-y-4">
+                <!-- Hunter.io API Key -->
+                <div>
+                    <label for="hunter_api_key" class="block text-sm font-medium text-gray-700">
+                        Hunter.io API Key
+                        <a href="https://hunter.io/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="hunter_api_key" name="HUNTER_API_KEY" value="{{ api_keys.HUNTER_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('hunter_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- Pipl API Key -->
+                <div>
+                    <label for="pipl_api_key" class="block text-sm font-medium text-gray-700">
+                        Pipl API Key
+                        <a href="https://pipl.com/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="pipl_api_key" name="PIPL_API_KEY" value="{{ api_keys.PIPL_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('pipl_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- Have I Been Pwned API Key -->
+                <div>
+                    <label for="hibp_api_key" class="block text-sm font-medium text-gray-700">
+                        Have I Been Pwned API Key
+                        <a href="https://haveibeenpwned.com/API/Key" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="hibp_api_key" name="HIBP_API_KEY" value="{{ api_keys.HIBP_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('hibp_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- Truecaller API Key -->
+                <div>
+                    <label for="truecaller_api_key" class="block text-sm font-medium text-gray-700">
+                        Truecaller API Key
+                        <a href="https://www.truecaller.com/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="truecaller_api_key" name="TRUECALLER_API_KEY" value="{{ api_keys.TRUECALLER_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('truecaller_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- Twitter API Key -->
+                <div>
+                    <label for="twitter_api_key" class="block text-sm font-medium text-gray-700">
+                        Twitter API Key
+                        <a href="https://developer.twitter.com/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="twitter_api_key" name="TWITTER_API_KEY" value="{{ api_keys.TWITTER_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('twitter_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- TinEye API Key -->
+                <div>
+                    <label for="tineye_api_key" class="block text-sm font-medium text-gray-700">
+                        TinEye API Key
+                        <a href="https://tineye.com/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="tineye_api_key" name="TINEYE_API_KEY" value="{{ api_keys.TINEYE_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('tineye_api_key')"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Domain Analysis APIs -->
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">Domain Analysis APIs</h3>
+            <div class="space-y-4">
+                <!-- WhoisXML API Key -->
+                <div>
+                    <label for="whoisxml_api_key" class="block text-sm font-medium text-gray-700">
+                        WhoisXML API Key
+                        <a href="https://whois.whoisxmlapi.com/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="whoisxml_api_key" name="WHOISXML_API_KEY" value="{{ api_keys.WHOISXML_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('whoisxml_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- SecurityTrails API Key -->
+                <div>
+                    <label for="securitytrails_api_key" class="block text-sm font-medium text-gray-700">
+                        SecurityTrails API Key
+                        <a href="https://securitytrails.com/corp/api" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="securitytrails_api_key" name="SECURITYTRAILS_API_KEY" value="{{ api_keys.SECURITYTRAILS_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('securitytrails_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- BuiltWith API Key -->
+                <div>
+                    <label for="builtwith_api_key" class="block text-sm font-medium text-gray-700">
+                        BuiltWith API Key
+                        <a href="https://builtwith.com/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="builtwith_api_key" name="BUILTWITH_API_KEY" value="{{ api_keys.BUILTWITH_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('builtwith_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- URLScan.io API Key -->
+                <div>
+                    <label for="urlscan_api_key" class="block text-sm font-medium text-gray-700">
+                        URLScan.io API Key
+                        <a href="https://urlscan.io/docs/api/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="urlscan_api_key" name="URLSCAN_API_KEY" value="{{ api_keys.URLSCAN_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('urlscan_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- VirusTotal API Key -->
+                <div>
+                    <label for="virustotal_api_key" class="block text-sm font-medium text-gray-700">
+                        VirusTotal API Key
+                        <a href="https://docs.virustotal.com/reference/overview" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="virustotal_api_key" name="VIRUSTOTAL_API_KEY" value="{{ api_keys.VIRUSTOTAL_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('virustotal_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- Wayback Machine API Key -->
+                <div>
+                    <label for="wayback_machine_api_key" class="block text-sm font-medium text-gray-700">
+                        Wayback Machine API Key
+                        <a href="https://archive.org/help/wayback_api.php" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="wayback_machine_api_key" name="WAYBACK_MACHINE_API_KEY" value="{{ api_keys.WAYBACK_MACHINE_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('wayback_machine_api_key')"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Threat Intelligence APIs -->
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">Threat Intelligence APIs</h3>
+            <div class="space-y-4">
+                <!-- AlienVault OTX API Key -->
+                <div>
+                    <label for="alienvault_otx_api_key" class="block text-sm font-medium text-gray-700">
+                        AlienVault OTX API Key
+                        <a href="https://otx.alienvault.com/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="alienvault_otx_api_key" name="ALIENVAULT_OTX_API_KEY" value="{{ api_keys.ALIENVAULT_OTX_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('alienvault_otx_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- Hybrid Analysis API Key -->
+                <div>
+                    <label for="hybrid_analysis_api_key" class="block text-sm font-medium text-gray-700">
+                        Hybrid Analysis API Key
+                        <a href="https://www.hybrid-analysis.com/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="hybrid_analysis_api_key" name="HYBRID_ANALYSIS_API_KEY" value="{{ api_keys.HYBRID_ANALYSIS_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('hybrid_analysis_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- Hybrid Analysis Secret -->
+                <div>
+                    <label for="hybrid_analysis_secret" class="block text-sm font-medium text-gray-700">
+                        Hybrid Analysis Secret (deprecated on v2)
+                        <a href="https://www.hybrid-analysis.com/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="hybrid_analysis_secret" name="HYBRID_ANALYSIS_SECRET" value="{{ api_keys.HYBRID_ANALYSIS_SECRET }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('hybrid_analysis_secret')"></i>
+                    </div>
+                </div>
+
+                <!-- Shodan API Key -->
+                <div>
+                    <label for="shodan_api_key" class="block text-sm font-medium text-gray-700">
+                        Shodan API Key
+                        <a href="https://developer.shodan.io/api" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="shodan_api_key" name="SHODAN_API_KEY" value="{{ api_keys.SHODAN_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('shodan_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- ThreatCrowd API Key -->
+                <div>
+                    <label for="threatcrowd_api_key" class="block text-sm font-medium text-gray-700">
+                        ThreatCrowd API Key
+                        <a href="https://www.threatcrowd.org/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="threatcrowd_api_key" name="THREATCROWD_API_KEY" value="{{ api_keys.THREATCROWD_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('threatcrowd_api_key')"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Network Reconnaissance APIs -->
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">Network Reconnaissance APIs</h3>
+            <div class="space-y-4">
+                <!-- Censys API Key -->
+                <div>
+                    <label for="censys_api_key" class="block text-sm font-medium text-gray-700">
+                        Censys API Key
+                        <a href="https://censys.io/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="censys_api_key" name="CENSYS_API_KEY" value="{{ api_keys.CENSYS_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('censys_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- IPinfo API Key -->
+                <div>
+                    <label for="ipinfo_api_key" class="block text-sm font-medium text-gray-700">
+                        IPinfo API Key
+                        <a href="https://ipinfo.io/products/ip-geolocation-api" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="ipinfo_api_key" name="IPINFO_API_KEY" value="{{ api_keys.IPINFO_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('ipinfo_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- AbuseIPDB API Key -->
+                <div>
+                    <label for="abuseipdb_api_key" class="block text-sm font-medium text-gray-700">
+                        AbuseIPDB API Key
+                        <a href="https://www.abuseipdb.com/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="abuseipdb_api_key" name="ABUSEIPDB_API_KEY" value="{{ api_keys.ABUSEIPDB_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('abuseipdb_api_key')"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Media Analysis APIs -->
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">Social Media Analysis APIs</h3>
+            <div class="space-y-4">
+                <!-- Reddit API Key -->
+                <div>
+                    <label for="reddit_api_key" class="block text-sm font-medium text-gray-700">
+                        Reddit API Key
+                        <a href="https://www.reddit.com/dev/api/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="reddit_api_key" name="REDDIT_API_KEY" value="{{ api_keys.REDDIT_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('reddit_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- Instagram API Key -->
+                <div>
+                    <label for="instagram_api_key" class="block text-sm font-medium text-gray-700">
+                        Instagram API Key
+                        <a href="https://developers.facebook.com/docs/instagram-api" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="instagram_api_key" name="INSTAGRAM_API_KEY" value="{{ api_keys.INSTAGRAM_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('instagram_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- Facebook Graph API Key -->
+                <div>
+                    <label for="facebook_graph_api_key" class="block text-sm font-medium text-gray-700">
+                        Facebook Graph API Key
+                        <a href="https://developers.facebook.com/docs/graph-api/overview" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="facebook_graph_api_key" name="FACEBOOK_GRAPH_API_KEY" value="{{ api_keys.FACEBOOK_GRAPH_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('facebook_graph_api_key')"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Analysis APIs -->
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">Image Analysis APIs</h3>
+            <div class="space-y-4">
+                <!-- Google Image API Key -->
+                <div>
+                    <label for="google_image_api_key" class="block text-sm font-medium text-gray-700">
+                        Google Image API Key
+                        <a href="https://developers.google.com/custom-search/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="google_image_api_key" name="GOOGLE_IMAGE_API_KEY" value="{{ api_keys.GOOGLE_IMAGE_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('google_image_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- Yandex Image API Key -->
+                <div>
+                    <label for="yandex_image_api_key" class="block text-sm font-medium text-gray-700">
+                        Yandex Image API Key
+                        <a href="https://yandex.com/dev/images/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="yandex_image_api_key" name="YANDEX_IMAGE_API_KEY" value="{{ api_keys.YANDEX_IMAGE_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('yandex_image_api_key')"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Email Verification APIs -->
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">Email Verification APIs</h3>
+            <div class="space-y-4">
+                <!-- Hunter.io API Key -->
+                <div>
+                    <label for="hunter_io_api_key" class="block text-sm font-medium text-gray-700">
+                        Hunter.io API Key
+                        <a href="https://hunter.io/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="hunter_io_api_key" name="HUNTER_IO_API_KEY" value="{{ api_keys.HUNTER_IO_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('hunter_io_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- Have I Been Pwned API Key -->
+                <div>
+                    <label for="hibp_api_key" class="block text-sm font-medium text-gray-700">
+                        Have I Been Pwned API Key
+                        <a href="https://haveibeenpwned.com/API/Key" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="hibp_api_key" name="HIBP_API_KEY" value="{{ api_keys.HIBP_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('hibp_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- Pipl API Key -->
+                <div>
+                    <label for="pipl_api_key" class="block text-sm font-medium text-gray-700">
+                        Pipl API Key
+                        <a href="https://pipl.com/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="pipl_api_key" name="PIPL_API_KEY" value="{{ api_keys.PIPL_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('pipl_api_key')"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phone Number Lookup APIs -->
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">Phone Number Lookup APIs</h3>
+            <div class="space-y-4">
+                <!-- Truecaller API Key -->
+                <div>
+                    <label for="truecaller_api_key" class="block text-sm font-medium text-gray-700">
+                        Truecaller API Key
+                        <a href="https://www.truecaller.com/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="truecaller_api_key" name="TRUECALLER_API_KEY" value="{{ api_keys.TRUECALLER_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('truecaller_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- Whitepages API Key -->
+                <div>
+                    <label for="whitepages_api_key" class="block text-sm font-medium text-gray-700">
+                        Whitepages API Key
+                        <a href="https://www.whitepages.com/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="whitepages_api_key" name="WHITEPAGES_API_KEY" value="{{ api_keys.WHITEPAGES_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('whitepages_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- NumVerify API Key -->
+                <div>
+                    <label for="numverify_api_key" class="block text-sm font-medium text-gray-700">
+                        NumVerify API Key
+                        <a href="https://numverify.com/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="numverify_api_key" name="NUMVERIFY_API_KEY" value="{{ api_keys.NUMVERIFY_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('numverify_api_key')"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Geolocation APIs -->
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">Geolocation APIs</h3>
+            <div class="space-y-4">
+                <!-- OpenCage API Key -->
+                <div>
+                    <label for="opencage_api_key" class="block text-sm font-medium text-gray-700">
+                        OpenCage API Key
+                        <a href="https://opencagedata.com/api" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="opencage_api_key" name="OPENCAGE_API_KEY" value="{{ api_keys.OPENCAGE_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('opencage_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- Google Maps API Key -->
+                <div>
+                    <label for="google_maps_api_key" class="block text-sm font-medium text-gray-700">
+                        Google Maps API Key
+                        <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="google_maps_api_key" name="GOOGLE_MAPS_API_KEY" value="{{ api_keys.GOOGLE_MAPS_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('google_maps_api_key')"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- News Monitoring APIs -->
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">News Monitoring APIs</h3>
+            <div class="space-y-4">
+                <!-- GDELT API Key -->
+                <div>
+                    <label for="gdelt_api_key" class="block text-sm font-medium text-gray-700">
+                        GDELT API Key
+                        <a href="http://blog.gdeltproject.org/gdelt-doc-2-0-api-debuts/" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="gdelt_api_key" name="GDELT_API_KEY" value="{{ api_keys.GDELT_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('gdelt_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- Google Trends API Key -->
+                <div>
+                    <label for="google_trends_api_key" class="block text-sm font-medium text-gray-700">
+                        Google Trends API Key
+                        <a href="https://colab.research.google.com/github/Tanu-N-Prabhu/Python/blob/master/Google_Trends_API.ipynb" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="google_trends_api_key" name="GOOGLE_TRENDS_API_KEY" value="{{ api_keys.GOOGLE_TRENDS_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('google_trends_api_key')"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Others APIs -->
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">Other service APIs</h3>
+            <div class="space-y-4">
+                <!-- APIFY API Key -->
+                <div>
+                    <label for="apify_api_key" class="block text-sm font-medium text-gray-700">
+                        APIFY API key
+                        <a href="https://console.apify.com/settings/integrations" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="apify_api_key" name="APIFY_API_KEY" value="{{ api_keys.APIFY_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('apify_api_key')"></i>
+                    </div>
+                </div>
+
+                <!-- Google Trends API Key -->
+                <div>
+                    <label for="tavily_api_key" class="block text-sm font-medium text-gray-700">
+                        Tavily API Key
+                        <a href="https://app.tavily.com/home" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm ml-2">(Get Key)</a>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="tavily_api_key" name="TAVILY_API_KEY" value="{{ api_keys.TAVILY_API_KEY }}"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" onclick="toggleVisibility('tavily_api_key')"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-6">
+            <button type="submit"
+                class="inline-flex items-center px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                Save API Keys
+            </button>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.getElementById('api-keys-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(event.target);
+        const apiKeys = Object.fromEntries(formData.entries());
+
+        fetch('/api/update_api_keys', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(apiKeys),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('API Keys updated successfully!');
+            } else {
+                alert('Failed to update API Keys.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while updating API Keys.');
+        });
+    });
+</script>
+
+<script>
+function toggleVisibility(inputId) {
+    const input = document.getElementById(inputId);
+    const icon = input.nextElementSibling;
+
+    // Check if the value is "None", "null", or "No Key Required"
+    const hiddenValues = ["None", "null", "No Key Required"];
+    if (hiddenValues.includes(input.value.trim())) {
+        // Keep the field visible and disable the eye icon
+        input.type = "text";
+        icon.style.display = "none"; // Hide the eye icon
+        return;
+    }
+
+    // Toggle visibility for other values
+    if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    } else {
+        input.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+    }
+}
+
+// Initialize visibility based on values when the page loads
+document.addEventListener("DOMContentLoaded", function () {
+    const inputs = document.querySelectorAll("input[type='text']");
+    inputs.forEach(input => {
+        const hiddenValues = ["None", "null", "No Key Required"];
+        if (hiddenValues.includes(input.value.trim())) {
+            input.type = "text";
+            input.nextElementSibling.style.display = "none"; // Hide the eye icon
+        } else {
+            input.type = "password"; // Mask the value by default
+        }
+    });
+});
+</script>
+{% endblock %}

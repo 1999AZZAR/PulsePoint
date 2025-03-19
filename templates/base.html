@@ -13,131 +13,7 @@
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M0 96C0 78.3 14.3 64 32 64H48c13.3 0 24 10.7 24 24v9.5C91.1 78.4 115.3 64 144 64c19.4 0 36.9 7.8 49.7 20.5c18.4-16.3 42.6-20.5 65-20.5c28.7 0 52.9 14.4 72 33.5V88c0-13.3 10.7-24 24-24h16c17.7 0 32 14.3 32 32v88h89.3c-4.8-10.1-7.3-21.2-7.3-32c0-9.7 1.8-19 5.1-27.6C479.4 110.6 455.8 96 429 96c-30.1 0-56.4 19.6-65.5 48H224v5.8c0 5.8 4.7 10.6 10.5 10.6h46.3c-2.7 10.4-4.9 21.1-6.4 32H234.5c-5.8 0-10.5 4.7-10.5 10.5V208H192v64H96c-17.7 0-32-14.3-32-32V96zM32 288h96c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V320c0-17.7 14.3-32 32-32zm144 0h96c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H176c-17.7 0-32-14.3-32-32V320c0-17.7 14.3-32 32-32zm144 0h96c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H320c-17.7 0-32-14.3-32-32V320c0-17.7 14.3-32 32-32z' fill='%234A90E2' /></svg>">
     {% block extra_css %}{% endblock %}
-    <style>
-        .flatpickr-input {
-            background-color: white !important;
-        }
-        .time-range-pill {
-            transition: all 0.2s;
-        }
-        .time-range-pill.active {
-            background-color: #3b82f6;
-            color: white;
-        }
-        .source-content {
-            transition: all 0.3s ease-out;
-        }
-        .sidebar {
-            transition: transform 0.3s ease;
-        }
-        .sidebar-collapsed {
-            transform: translateX(-100%);
-        }
-        .main-content {
-            transition: margin-left 0.3s ease;
-        }
-        .workflow-status {
-            font-size: 0.7rem;
-            padding: 0.15rem 0.4rem;
-            border-radius: 9999px;
-        }
-        .status-todo {
-            background-color: #fee2e2;
-            color: #b91c1c;
-        }
-        .status-progress {
-            background-color: #e0f2fe;
-            color: #0369a1;
-        }
-        .status-done {
-            background-color: #dcfce7;
-            color: #15803d;
-        }
-
-        /* Ensure proper grid layout for results */
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            padding: 1rem 0;
-        }
-
-        /* Style for individual result cards */
-        .result-card {
-            background-color: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            padding: 1.5rem;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .result-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Ensure proper spacing between cards */
-        .result-item {
-            margin-bottom: 1.5rem;
-        }
-
-        /* Ensure the content inside the cards is properly spaced */
-        .result-content {
-            margin-top: 1rem;
-        }
-
-        /* Ensure the footer inside the cards is properly aligned */
-        .result-footer {
-            margin-top: 1rem;
-            text-align: right;
-        }
-
-        /* Hover tooltip styles */
-        .workflow-item {
-            position: relative;
-            display: block;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            transition: background-color 0.2s ease;
-        }
-
-        .workflow-item:hover {
-            background-color: #f3f4f6; /* Light gray background on hover */
-        }
-
-        .workflow-item .tooltip-text {
-            visibility: hidden;
-            width: 200px;
-            background-color: #374151; /* Dark gray background */
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 0.5rem;
-            position: absolute;
-            z-index: 1;
-            left: 50%;
-            margin-left: -100px; /* Center the tooltip */
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        /* Position the tooltip above the menu item by default */
-        .workflow-item .tooltip-text {
-            bottom: 125%;
-        }
-
-        /* If there isn't enough space above, position the tooltip below */
-        .workflow-item:hover .tooltip-text {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        /* Adjust tooltip position for the Dashboard (topmost item) */
-        .dashboard-item .tooltip-text {
-            bottom: auto;
-            top: 125%;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body class="bg-gray-100 min-h-screen">
     <!-- Sidebar -->
@@ -155,16 +31,23 @@
 
             <nav class="space-y-1">
                 <!-- Dashboard -->
-                <a href="#" class="dashboard-item workflow-item block py-2 px-3 rounded hover:bg-gray-100 text-blue-600 font-medium border-l-4 border-blue-500 bg-blue-50">
-                    <i class="fa-solid fa-house mr-2"></i>Dashboard
-                    <span class="tooltip-text">View the main dashboard with an overview of all workflows and recent activity.</span>
-                </a>
+                <div class="mt-6">
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700 border-l-4 border-transparent" data-route="/">
+                        <div>
+                            <i class="fa-solid fa-house mr-2"></i>
+                            <span>Dashboard</span>
+                        </div>
+                        <span class="workflow-status status-todo">Todo</span>
+                        <span class="tooltip-text">View the main dashboard with an overview of all workflows and recent activity.</span>
+                    </a>
+                <div>
 
+                <!--menu items-->
                 <div class="mt-6">
                     <p class="text-xs uppercase font-semibold text-gray-500 mb-2 px-3">OSINT Workflows</p>
 
                     <!-- Person of Interest -->
-                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700 border-l-4 border-transparent" data-route="/person_of_interest">
                         <div>
                             <i class="fa-solid fa-user mr-2"></i>
                             <span>Person of Interest</span>
@@ -174,7 +57,7 @@
                     </a>
 
                     <!-- Domain Analysis -->
-                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700 border-l-4 border-transparent" data-route="/domain_analysis">
                         <div>
                             <i class="fa-solid fa-globe mr-2"></i>
                             <span>Domain Analysis</span>
@@ -184,7 +67,7 @@
                     </a>
 
                     <!-- Threat Intelligence -->
-                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700 border-l-4 border-transparent" data-route="/threat_intelligence">
                         <div>
                             <i class="fa-solid fa-shield-alt mr-2"></i>
                             <span>Threat Intelligence</span>
@@ -194,7 +77,7 @@
                     </a>
 
                     <!-- Network Recon -->
-                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700 border-l-4 border-transparent" data-route="/network_recon">
                         <div>
                             <i class="fa-solid fa-network-wired mr-2"></i>
                             <span>Network Recon</span>
@@ -204,7 +87,7 @@
                     </a>
 
                     <!-- Social Media Analysis -->
-                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700 border-l-4 border-transparent" data-route="/social_media_analysis">
                         <div>
                             <i class="fa-solid fa-hashtag mr-2"></i>
                             <span>Social Media Analysis</span>
@@ -214,7 +97,7 @@
                     </a>
 
                     <!-- Image Analysis -->
-                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700 border-l-4 border-transparent" data-route="/image_analysis">
                         <div>
                             <i class="fa-solid fa-image mr-2"></i>
                             <span>Image Analysis</span>
@@ -224,7 +107,7 @@
                     </a>
 
                     <!-- Email Verification -->
-                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700 border-l-4 border-transparent" data-route="/email_verification">
                         <div>
                             <i class="fa-solid fa-envelope mr-2"></i>
                             <span>Email Verification</span>
@@ -234,7 +117,7 @@
                     </a>
 
                     <!-- Phone Number Lookup -->
-                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700 border-l-4 border-transparent" data-route="/phone_number_lookup">
                         <div>
                             <i class="fa-solid fa-phone mr-2"></i>
                             <span>Phone Number Lookup</span>
@@ -244,7 +127,7 @@
                     </a>
 
                     <!-- Geolocation -->
-                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700 border-l-4 border-transparent" data-route="/geolocation">
                         <div>
                             <i class="fa-solid fa-map-marker-alt mr-2"></i>
                             <span>Geolocation</span>
@@ -254,7 +137,7 @@
                     </a>
 
                     <!-- News Monitoring -->
-                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700 border-l-4 border-transparent" data-route="/news_monitoring">
                         <div>
                             <i class="fa-solid fa-newspaper mr-2"></i>
                             <span>News Monitoring</span>
@@ -264,7 +147,7 @@
                     </a>
 
                     <!-- General Knowledge -->
-                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700 border-l-4 border-transparent" data-route="/general_knowledge">
                         <div>
                             <i class="fa-solid fa-book mr-2"></i>
                             <span>General Knowledge</span>
@@ -274,11 +157,20 @@
                     </a>
                 </div>
 
+                <!--settings items-->
                 <div class="mt-6">
                     <p class="text-xs uppercase font-semibold text-gray-500 mb-2 px-3">SETTINGS</p>
-                    <a href="#" class="block py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
-                        <i class="fa-solid fa-key mr-2"></i>API Keys
+
+                    <!-- API Keys Management -->
+                    <a href="#" class="workflow-item flex justify-between items-center py-2 px-3 rounded hover:bg-gray-100 text-gray-700 border-l-4 border-transparent" data-route="/api_keys">
+                        <div>
+                            <i class="fa-solid fa-key mr-2"></i>
+                            <span>API Keys Management</span>
+                        </div>
+                        <span class="workflow-status status-progress">In Progress</span>
+                        <span class="tooltip-text">manage all the api keys for the apps</span>
                     </a>
+
                     <a href="#" class="block py-2 px-3 rounded hover:bg-gray-100 text-gray-700">
                         <i class="fa-solid fa-cog mr-2"></i>Preferences
                     </a>
@@ -290,9 +182,10 @@
     <!-- Main Content -->
     <div id="main-content" class="main-content">
         <!-- Top Header Bar -->
-        <header class="bg-white shadow-sm p-4 mb-6 flex items-center">
+        <header class="bg-white shadow-sm p-4 mb-6 flex items-center sticky top-0 z-50">
             <h1 id="header-title" class="text-2xl font-bold text-gray-800 cursor-pointer">
-                <i class="fa-solid fa-wave-square text-blue-500 mr-2"></i>PulsePoint {% block page_subtitle %}{% endblock %}
+                <i class="fa-solid fa-wave-square text-blue-500 mr-2"></i>PulsePoint
+                <span class="sticky-subtitle">{% block page_subtitle %}{% endblock %}</span>
             </h1>
         </header>
 
@@ -324,6 +217,27 @@
             sidebarClose.addEventListener('click', function() {
                 sidebar.classList.add('sidebar-collapsed');
                 mainContent.style.marginLeft = '0';
+            });
+
+            // Handle navigation for workflow items
+            const workflowItems = document.querySelectorAll('.workflow-item[data-route]');
+            workflowItems.forEach(item => {
+                item.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent default link behavior
+                    const route = item.getAttribute('data-route');
+                    window.location.href = route; // Navigate to the route
+                });
+            });
+
+            // Highlight the current page's menu item
+            const currentPath = window.location.pathname; // Get the current URL path
+            workflowItems.forEach(item => {
+                const itemRoute = item.getAttribute('data-route');
+                if (currentPath === itemRoute) {
+                    item.classList.add('text-blue-600', 'border-blue-500', 'bg-blue-50'); // Add active class
+                } else {
+                    item.classList.remove('text-blue-600', 'border-blue-500', 'bg-blue-50'); // Remove active class
+                }
             });
         });
     </script>

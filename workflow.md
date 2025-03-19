@@ -155,3 +155,5 @@ on some point this project will also using 3rd party api like :
 - [google trend](https://colab.research.google.com/github/Tanu-N-Prabhu/Python/blob/master/Google_Trends_API.ipynb)
 
 - [Instagram Scraping](https://github.com/drawrowfly/instagram-scraper)
+
+- [tavily](https://app.tavily.com/home)
