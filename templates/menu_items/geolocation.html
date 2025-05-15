@@ -5,6 +5,20 @@
 {% block page_subtitle %}(Geolocation){% endblock %}
 
 {% block content %}
+    <!-- Page Explanation -->
+    <div class="bg-blue-50 p-4 rounded-lg mb-6 border-l-4 border-blue-500">
+        <h2 class="text-xl font-bold text-blue-700 mb-2"><i class="fa-solid fa-map-location-dot mr-2"></i>Geolocation Analysis</h2>
+        <p class="text-blue-800">Analyze location-based data from news and events. This tool visualizes geographic connections in your search results, showing where events are occurring and identifying geographic patterns and trends.</p>
+        <div class="mt-3 p-3 bg-white rounded-lg">
+            <p class="text-blue-700 font-bold">You can search using any of the following:</p>
+            <ul class="list-disc list-inside mt-1 text-blue-800">
+                <li><strong>Text queries</strong>: e.g., "earthquakes in Japan", "floods in California"</li>
+                <li><strong>IP addresses</strong>: e.g., "8.8.8.8", "157.240.21.35"</li>
+                <li><strong>Coordinates</strong>: e.g., "37.7749,-122.4194" (San Francisco), "48.8566,2.3522" (Paris)</li>
+            </ul>
+        </div>
+    </div>
+
     <!-- Include the search form component -->
     {% include "search-form.html" %}
 
@@ -20,10 +34,18 @@
         <span id="error-message"></span>
     </div>
 
+    <!-- Map Container -->
+    <div id="map-container" class="w-full h-96 rounded-lg shadow-md mt-6 hidden"></div>
+
     <!-- Results Section -->
-    <div id="results" class="space-y-4"></div>
+    <div id="results" class="space-y-4 mt-6"></div>
 {% endblock %}
 
 {% block scripts %}
-    <script src="{{ url_for('static', filename='js/gk.js') }}"></script>
+    <!-- Include Leaflet.js for maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Custom geolocation script -->
+    <script src="{{ url_for('static', filename='js/geolocation.js') }}"></script>
 {% endblock %}

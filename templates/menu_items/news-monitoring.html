@@ -5,6 +5,12 @@
 {% block page_subtitle %}(News Monitoring){% endblock %}
 
 {% block content %}
+    <!-- Page Explanation -->
+    <div class="bg-blue-50 p-4 rounded-lg mb-6 border-l-4 border-blue-500">
+        <h2 class="text-xl font-bold text-blue-700 mb-2"><i class="fa-solid fa-newspaper mr-2"></i>News Monitoring</h2>
+        <p class="text-blue-800">Monitor the latest news from multiple sources. This tool prioritizes news sources to help track current events, breaking headlines, and media coverage for your search topics.</p>
+    </div>
+
     <!-- Include the search form component -->
     {% include "search-form.html" %}
 
@@ -25,5 +31,5 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{{ url_for('static', filename='js/gk.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/news_monitoring.js') }}"></script>
 {% endblock %}

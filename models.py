@@ -65,6 +65,7 @@ class Result(db.Model):
     url = db.Column(db.String(255))
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)  # Add timestamp field
     sentiment_score = db.Column(db.Float, nullable=True)  # Add sentiment score field
+    data = db.Column(db.JSON, nullable=True)  # Store additional data like location information
 
     # Relationship
     query = relationship("Query", back_populates="results")

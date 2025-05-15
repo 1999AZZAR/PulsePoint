@@ -6,3 +6,9 @@ Flask-SQLAlchemy
 google-generativeai
 vaderSentiment
 APScheduler
+
+# Add new dependencies for RSS feeds
+# Use the stable version of feedparser (we'll patch it with patch_feedparser.py)
+feedparser==6.0.10
+beautifulsoup4==4.12.2
+requests-html==0.10.0  # Fallback for when feedparser has compatibility issues

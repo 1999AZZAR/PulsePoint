@@ -121,3 +121,122 @@
     bottom: auto;
     top: 125%;
 }
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+/* Base responsive styles */
+@media (max-width: 767px) {
+    .results-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .result-card {
+        padding: 1rem;
+    }
+
+    .sidebar {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .results-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+/* Text truncation for small screens */
+.truncate-mobile {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .truncate-mobile {
+        -webkit-line-clamp: unset;
+        display: block;
+        overflow: visible;
+    }
+}
+
+/* Improved tooltip positioning for mobile */
+@media (max-width: 767px) {
+    .tooltip-text {
+        width: 160px;
+        font-size: 12px;
+        left: 100%;
+        bottom: 50%;
+        transform: translateY(50%);
+        margin-left: 10px;
+    }
+
+    .tooltip-text::after {
+        top: 50%;
+        left: -5px;
+        margin-top: -5px;
+        border-color: transparent #333 transparent transparent;
+    }
+}
+
+/* Better spacing for mobile */
+@media (max-width: 767px) {
+    .result-content {
+        margin-top: 0.5rem;
+    }
+
+    .result-footer {
+        margin-top: 0.5rem;
+    }
+
+    .source-header {
+        padding: 0.75rem;
+    }
+}
+
