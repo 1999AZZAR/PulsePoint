@@ -5,7 +5,80 @@
 {% block page_subtitle %}(Dashboard){% endblock %}
 
 {% block content %}
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+    <!-- Main Content Area (lg:col-span-2) -->
+    <div class="lg:col-span-2 space-y-6">
+        <!-- Active Projects Section -->
+        <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">
+                <i class="fa-solid fa-folder-open text-blue-500 mr-2"></i>Active Projects
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Project 1 -->
+                <div class="bg-gray-50 p-4 rounded-lg hover:shadow-sm transition-shadow duration-200">
+                    <h3 class="text-lg font-semibold mb-2 text-gray-800">
+                        <i class="fa-solid fa-user text-blue-500 mr-2"></i>Person of Interest Case #123
+                    </h3>
+                    <p class="text-sm text-gray-500 mb-2">Updated: 2 days ago</p>
+                    <div class="flex items-center mb-2">
+                        <span class="text-gray-600 mr-2">Status:</span>
+                        <span class="workflow-status status-progress">In Progress</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: 75%"></div>
+                    </div>
+                    <a href="#" class="mt-3 inline-block text-blue-500 hover:text-blue-700 text-sm">View Details &rarr;</a>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-gray-50 p-4 rounded-lg hover:shadow-sm transition-shadow duration-200">
+                    <h3 class="text-lg font-semibold mb-2 text-gray-800">
+                        <i class="fa-solid fa-globe text-blue-500 mr-2"></i>Domain Analysis: evilcorp.com
+                    </h3>
+                    <p class="text-sm text-gray-500 mb-2">Updated: 5 hours ago</p>
+                    <div class="flex items-center mb-2">
+                        <span class="text-gray-600 mr-2">Status:</span>
+                        <span class="workflow-status status-done">Completed</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                        <div class="bg-green-500 h-2.5 rounded-full" style="width: 100%"></div>
+                    </div>
+                     <a href="#" class="mt-3 inline-block text-blue-500 hover:text-blue-700 text-sm">View Details &rarr;</a>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-gray-50 p-4 rounded-lg hover:shadow-sm transition-shadow duration-200">
+                    <h3 class="text-lg font-semibold mb-2 text-gray-800">
+                        <i class="fa-solid fa-shield-alt text-blue-500 mr-2"></i>Threat Intel: APT Group X
+                    </h3>
+                    <p class="text-sm text-gray-500 mb-2">Updated: 1 day ago</p>
+                    <div class="flex items-center mb-2">
+                        <span class="text-gray-600 mr-2">Status:</span>
+                        <span class="workflow-status status-todo">Pending Review</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                        <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 30%"></div>
+                    </div>
+                     <a href="#" class="mt-3 inline-block text-blue-500 hover:text-blue-700 text-sm">View Details &rarr;</a>
+                </div>
+                 <!-- Add more project cards as needed -->
+            </div>
+        </div>
+
+        <!-- Charts Section (Threat Level Analysis) -->
+        <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">
+                <i class="fa-solid fa-chart-pie text-blue-500 mr-2"></i>Threat Level Analysis
+            </h2>
+            <div class="h-64 bg-gray-100 rounded-lg flex items-center justify-center">
+                <span class="text-gray-500">Chart Placeholder (e.g., Overall Threat Posture)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar Area (lg:col-span-1) -->
+    <div class="lg:col-span-1 space-y-6">
         <!-- Quick Stats Section -->
         <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
             <h2 class="text-xl font-semibold mb-4 text-gray-800">
@@ -13,45 +86,20 @@
             </h2>
             <div class="space-y-3">
                 <div class="flex justify-between items-center">
-                    <span class="text-gray-600">Total Workflows</span>
-                    <span class="font-semibold text-gray-800">12</span>
-                </div>
-                <div class="flex justify-between items-center">
-                    <span class="text-gray-600">Completed</span>
-                    <span class="font-semibold text-gray-800">8</span>
-                </div>
-                <div class="flex justify-between items-center">
-                    <span class="text-gray-600">In Progress</span>
+                    <span class="text-gray-600">Active Projects</span>
                     <span class="font-semibold text-gray-800">3</span>
                 </div>
                 <div class="flex justify-between items-center">
-                    <span class="text-gray-600">Pending</span>
+                    <span class="text-gray-600">Completed This Week</span>
                     <span class="font-semibold text-gray-800">1</span>
                 </div>
-            </div>
-        </div>
-
-        <!-- Recent Activity Section -->
-        <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 md:col-span-2">
-            <h2 class="text-xl font-semibold mb-4 text-gray-800">
-                <i class="fa-solid fa-clock-rotate-left text-blue-500 mr-2"></i>Recent Activity
-            </h2>
-            <div class="space-y-3">
-                <div class="flex items-center">
-                    <i class="fa-solid fa-user text-gray-500 mr-2"></i>
-                    <span class="text-gray-600">Person of Interest workflow completed</span>
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600">Alerts</span>
+                    <span class="font-semibold text-red-500">5 New</span>
                 </div>
-                <div class="flex items-center">
-                    <i class="fa-solid fa-globe text-gray-500 mr-2"></i>
-                    <span class="text-gray-600">Domain Analysis workflow started</span>
-                </div>
-                <div class="flex items-center">
-                    <i class="fa-solid fa-shield-alt text-gray-500 mr-2"></i>
-                    <span class="text-gray-600">Threat Intelligence workflow updated</span>
-                </div>
-                <div class="flex items-center">
-                    <i class="fa-solid fa-network-wired text-gray-500 mr-2"></i>
-                    <span class="text-gray-600">Network Recon workflow completed</span>
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600">Data Sources</span>
+                    <span class="font-semibold text-gray-800">15</span>
                 </div>
             </div>
         </div>
@@ -62,126 +110,76 @@
                 <i class="fa-solid fa-rocket text-blue-500 mr-2"></i>Quick Actions
             </h2>
             <div class="space-y-3">
-                <a href="#" class="flex items-center text-blue-500 hover:text-blue-700 transition-colors duration-200">
-                    <i class="fa-solid fa-user mr-2"></i>
-                    <span>Person of Interest</span>
+                <a href="{{ url_for('home') }}" class="block w-full text-left px-4 py-2 text-sm text-white bg-blue-500 hover:bg-blue-600 rounded-md transition-colors duration-200">
+                    <i class="fa-solid fa-plus-circle mr-2"></i>Start New Project
                 </a>
-                <a href="#" class="flex items-center text-blue-500 hover:text-blue-700 transition-colors duration-200">
-                    <i class="fa-solid fa-globe mr-2"></i>
-                    <span>Domain Analysis</span>
+                <a href="{{ url_for('person_of_interest') }}" class="block w-full text-left px-4 py-2 text-sm text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200">
+                    <i class="fa-solid fa-user mr-2"></i>Person of Interest Search
                 </a>
-                <a href="#" class="flex items-center text-blue-500 hover:text-blue-700 transition-colors duration-200">
-                    <i class="fa-solid fa-shield-alt mr-2"></i>
-                    <span>Threat Intelligence</span>
+                <a href="{{ url_for('domain_analysis') }}" class="block w-full text-left px-4 py-2 text-sm text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200">
+                    <i class="fa-solid fa-globe mr-2"></i>Domain Analysis
                 </a>
-                <a href="#" class="flex items-center text-blue-500 hover:text-blue-700 transition-colors duration-200">
-                    <i class="fa-solid fa-network-wired mr-2"></i>
-                    <span>Network Recon</span>
+                 <a href="#" class="block w-full text-left px-4 py-2 text-sm text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200">
+                    <i class="fa-solid fa-shield-virus mr-2"></i>Vulnerability Scan
                 </a>
             </div>
         </div>
 
-        <!-- Workflow Progress Section -->
-        <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 col-span-1 md:col-span-2 lg:col-span-4">
+        <!-- Recent Activity Section -->
+        <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
             <h2 class="text-xl font-semibold mb-4 text-gray-800">
-                <i class="fa-solid fa-tasks text-blue-500 mr-2"></i>Workflow Progress
+                <i class="fa-solid fa-clock-rotate-left text-blue-500 mr-2"></i>Recent Activity
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- Person of Interest -->
-                <div class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow duration-200">
-                    <h3 class="text-lg font-semibold mb-2 text-gray-800">
-                        <i class="fa-solid fa-user text-blue-500 mr-2"></i>Person of Interest
-                    </h3>
-                    <div class="flex items-center">
-                        <span class="text-gray-600">Status:</span>
-                        <span class="workflow-status status-done ml-2">Done</span>
+            <ul class="space-y-3">
+                <li class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                            <i class="fa-solid fa-check text-green-500"></i>
+                        </div>
                     </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-gray-700">Project <span class="font-semibold">"Domain Analysis: evilcorp.com"</span> marked as completed.</p>
+                        <p class="text-xs text-gray-500">5 hours ago</p>
+                    </div>
+                </li>
+                <li class="flex items-start">
+                    <div class="flex-shrink-0">
+                         <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+                            <i class="fa-solid fa-user-plus text-blue-500"></i>
                 </div>
-
-                <!-- Domain Analysis -->
-                <div class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow duration-200">
-                    <h3 class="text-lg font-semibold mb-2 text-gray-800">
-                        <i class="fa-solid fa-globe text-blue-500 mr-2"></i>Domain Analysis
-                    </h3>
-                    <div class="flex items-center">
-                        <span class="text-gray-600">Status:</span>
-                        <span class="workflow-status status-progress ml-2">In Progress</span>
                     </div>
-                </div>
-
-                <!-- Threat Intelligence -->
-                <div class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow duration-200">
-                    <h3 class="text-lg font-semibold mb-2 text-gray-800">
-                        <i class="fa-solid fa-shield-alt text-blue-500 mr-2"></i>Threat Intelligence
-                    </h3>
-                    <div class="flex items-center">
-                        <span class="text-gray-600">Status:</span>
-                        <span class="workflow-status status-todo ml-2">Todo</span>
+                    <div class="ml-3">
+                        <p class="text-sm text-gray-700">New PoI <span class="font-semibold">"John Doe"</span> added to Case #123.</p>
+                        <p class="text-xs text-gray-500">1 day ago</p>
                     </div>
-                </div>
-
-                <!-- Network Recon -->
-                <div class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow duration-200">
-                    <h3 class="text-lg font-semibold mb-2 text-gray-800">
-                        <i class="fa-solid fa-network-wired text-blue-500 mr-2"></i>Network Recon
-                    </h3>
-                    <div class="flex items-center">
-                        <span class="text-gray-600">Status:</span>
-                        <span class="workflow-status status-done ml-2">Done</span>
-                    </div>
+                </li>
+                <li class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center">
+                            <i class="fa-solid fa-exclamation-triangle text-yellow-500"></i>
                 </div>
             </div>
-        </div>
-
-        <!-- Projects Section -->
-        <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 col-span-1 md:col-span-2 lg:col-span-4">
-            <h2 class="text-xl font-semibold mb-4 text-gray-800">
-                <i class="fa-solid fa-folder-open text-blue-500 mr-2"></i>Active Projects
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- Project 1 -->
-                <div class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow duration-200">
-                    <h3 class="text-lg font-semibold mb-2 text-gray-800">
-                        <i class="fa-solid fa-user text-blue-500 mr-2"></i>Person of Interest
-                    </h3>
-                    <div class="flex items-center">
-                        <span class="text-gray-600">Status:</span>
-                        <span class="workflow-status status-done ml-2">Done</span>
+                    <div class="ml-3">
+                        <p class="text-sm text-gray-700">High severity alert triggered for <span class="font-semibold">"Threat Intel: APT Group X"</span>.</p>
+                        <p class="text-xs text-gray-500">2 days ago</p>
                     </div>
+                </li>
+                 <li class="flex items-start">
+                    <div class="flex-shrink-0">
+                         <div class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center">
+                            <i class="fa-solid fa-file-alt text-indigo-500"></i>
                 </div>
-
-                <!-- Project 2 -->
-                <div class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow duration-200">
-                    <h3 class="text-lg font-semibold mb-2 text-gray-800">
-                        <i class="fa-solid fa-globe text-blue-500 mr-2"></i>Domain Analysis
-                    </h3>
-                    <div class="flex items-center">
-                        <span class="text-gray-600">Status:</span>
-                        <span class="workflow-status status-progress ml-2">In Progress</span>
                     </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow duration-200">
-                    <h3 class="text-lg font-semibold mb-2 text-gray-800">
-                        <i class="fa-solid fa-shield-alt text-blue-500 mr-2"></i>Threat Intelligence
-                    </h3>
-                    <div class="flex items-center">
-                        <span class="text-gray-600">Status:</span>
-                        <span class="workflow-status status-todo ml-2">Todo</span>
+                    <div class="ml-3">
+                        <p class="text-sm text-gray-700">Report generated for <span class="font-semibold">Network Recon Scan #087</span>.</p>
+                        <p class="text-xs text-gray-500">3 days ago</p>
                     </div>
+                </li>
+            </ul>
+            <a href="#" class="mt-4 inline-block text-blue-500 hover:text-blue-700 text-sm">View all activity &rarr;</a>
                 </div>
-            </div>
-        </div>
-
-        <!-- Charts Section -->
-        <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 col-span-1 md:col-span-2 lg:col-span-4">
-            <h2 class="text-xl font-semibold mb-4 text-gray-800">
-                <i class="fa-solid fa-chart-pie text-blue-500 mr-2"></i>Threat Level Analysis
-            </h2>
-            <div class="h-64 bg-gray-100 rounded-lg flex items-center justify-center">
-                <span class="text-gray-500">Chart Placeholder</span>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

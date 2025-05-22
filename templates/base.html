@@ -14,6 +14,45 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M0 96C0 78.3 14.3 64 32 64H48c13.3 0 24 10.7 24 24v9.5C91.1 78.4 115.3 64 144 64c19.4 0 36.9 7.8 49.7 20.5c18.4-16.3 42.6-20.5 65-20.5c28.7 0 52.9 14.4 72 33.5V88c0-13.3 10.7-24 24-24h16c17.7 0 32 14.3 32 32v88h89.3c-4.8-10.1-7.3-21.2-7.3-32c0-9.7 1.8-19 5.1-27.6C479.4 110.6 455.8 96 429 96c-30.1 0-56.4 19.6-65.5 48H224v5.8c0 5.8 4.7 10.6 10.5 10.6h46.3c-2.7 10.4-4.9 21.1-6.4 32H234.5c-5.8 0-10.5 4.7-10.5 10.5V208H192v64H96c-17.7 0-32-14.3-32-32V96zM32 288h96c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V320c0-17.7 14.3-32 32-32zm144 0h96c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H176c-17.7 0-32-14.3-32-32V320c0-17.7 14.3-32 32-32zm144 0h96c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H320c-17.7 0-32-14.3-32-32V320c0-17.7 14.3-32 32-32z' fill='%234A90E2' /></svg>">
     {% block extra_css %}{% endblock %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        .workflow-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px; /* pill shape */
+            font-size: 0.75rem; /* text-xs */
+            font-weight: 600; /* semibold */
+            display: inline-flex;
+            align-items: center;
+        }
+        .workflow-status.status-done {
+            background-color: #D1FAE5; /* green-100 */
+            color: #065F46; /* green-800 */
+        }
+        .workflow-status.status-progress {
+            background-color: #DBEAFE; /* blue-100 */
+            color: #1E40AF; /* blue-800 */
+        }
+        .workflow-status.status-todo {
+            background-color: #FEF3C7; /* yellow-100 */
+            color: #92400E; /* yellow-800 */
+        }
+        .workflow-status::before {
+            content: '';
+            display: inline-block;
+            width: 0.5rem;
+            height: 0.5rem;
+            margin-right: 0.375rem;
+            border-radius: 50%;
+        }
+        .workflow-status.status-done::before {
+            background-color: #10B981; /* green-500 */
+        }
+        .workflow-status.status-progress::before {
+            background-color: #3B82F6; /* blue-500 */
+        }
+        .workflow-status.status-todo::before {
+            background-color: #F59E0B; /* yellow-500 */
+        }
+    </style>
 </head>
 <body class="bg-gray-100 min-h-screen">
     <!-- Sidebar -->
@@ -54,7 +93,7 @@
                             <i class="fa-solid fa-user mr-2"></i>
                             <span>Person of Interest</span>
                         </div>
-                        <div class="tooltip-container">
+                        <divTodo class="tooltip-container">
                             <span class="workflow-status status-todo">Todo</span>
                             <span class="tooltip-text">Search for information about a person using name, email, or phone number. Includes social media profiles, breach history, and more.</span>
                         </div>

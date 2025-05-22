@@ -5,6 +5,23 @@
 {% block page_subtitle %}(API Keys Management){% endblock %}
 
 {% block content %}
+<!-- Page Explanation -->
+<div class="bg-blue-50 p-4 rounded-lg mb-6 border-l-4 border-blue-500">
+    <h2 class="text-xl font-bold text-blue-700 mb-2"><i class="fa-solid fa-key mr-2"></i>API Keys Configuration</h2>
+    <p class="text-blue-800">Securely manage the API keys required for PulsePoint to interact with various third-party services and data sources. Providing valid API keys enables the full functionality of the OSINT workflows and data gathering processes.</p>
+    <div class="mt-3 p-3 bg-white rounded-lg">
+        <p class="text-blue-700 font-bold">Important Notes & Best Practices:</p>
+        <ul class="list-disc list-inside mt-1 text-blue-800 space-y-1">
+            <li>API keys grant PulsePoint access to external services on your behalf. Treat them like passwords and keep them confidential.</li>
+            <li>Obtain API keys directly from the respective service providers. Quick links to their developer/API pages are provided next to each input field.</li>
+            <li>After entering your keys, click the "Save API Keys" button at the bottom of the page. Keys are stored locally in your <code>.env</code> file.</li>
+            <li>Ensure your <code>.env</code> file is listed in your <code>.gitignore</code> file to prevent accidental sharing of your keys if you use version control.</li>
+            <li>Use the <i class='fa-solid fa-eye'></i> icon next to each field to toggle the visibility of your API key as you type or verify it.</li>
+            <li>Many services offer free tiers for API access, which may have usage limits. For extensive use, you might need to subscribe to paid plans.</li>
+        </ul>
+    </div>
+</div>
+
 <div class="container mx-auto px-4">
     <h2 class="text-2xl font-bold mb-6">API Keys Management</h2>
 

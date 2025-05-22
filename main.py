@@ -50,29 +50,29 @@ def run_with_app_context(func):
 scheduler = BackgroundScheduler()
 
 # Schedule periodic checks with app context
-scheduler.add_job(
-    func=run_with_app_context(completer.check_all_queries_per_source),
-    trigger="interval",
-    seconds=80,
-    # next_run_time=datetime.now(),
-    misfire_grace_time=27,
-)
+# scheduler.add_job(
+#     func=run_with_app_context(completer.check_all_queries_per_source),
+#     trigger="interval",
+#     seconds=80,
+#     # next_run_time=datetime.now(),
+#     misfire_grace_time=27,
+# )
 
-scheduler.add_job(
-    func=run_with_app_context(automatic_search),
-    trigger="interval",
-    seconds=241,
-    # next_run_time=datetime.now(),
-    misfire_grace_time=81,
-)
+# scheduler.add_job(
+#     func=run_with_app_context(automatic_search),
+#     trigger="interval",
+#     seconds=241,
+#     # next_run_time=datetime.now(),
+#     misfire_grace_time=81,
+# )
 
-scheduler.add_job(
-    func=run_with_app_context(update_missing_values),
-    trigger="interval",
-    seconds=483,
-    # next_run_time=datetime.now(),
-    misfire_grace_time=163,
-)
+# scheduler.add_job(
+#     func=run_with_app_context(update_missing_values),
+#     trigger="interval",
+#     seconds=483,
+#     # next_run_time=datetime.now(),
+#     misfire_grace_time=163,
+# )
 
 # Start the scheduler
 scheduler.start()

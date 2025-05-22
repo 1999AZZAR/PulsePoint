@@ -5,6 +5,12 @@
 {% block page_subtitle %}(Phone Number Lookup){% endblock %}
 
 {% block content %}
+    <!-- Page Explanation -->
+    <div class="bg-blue-50 p-4 rounded-lg mb-6 border-l-4 border-blue-500">
+        <h2 class="text-xl font-bold text-blue-700 mb-2"><i class="fa-solid fa-phone-flip mr-2"></i>Phone Number Lookup</h2>
+        <p class="text-blue-800">Enter a phone number to gather information such as carrier details, line type (mobile/landline), and potentially associated user or location information. This tool helps validate numbers and gather context for investigations.</p>
+    </div>
+
     <!-- Include the search form component -->
     {% include "search-form.html" %}
 
